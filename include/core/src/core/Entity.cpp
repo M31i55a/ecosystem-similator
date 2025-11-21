@@ -1,0 +1,2 @@
+#include"Strusts.h"
+inline<
