@@ -1,5 +1,5 @@
 #pragma once
-#include"Entity.h"
+#include "Entity.h"
 #include "Strusts.h"
 #include <vector>
 #include <memory>
@@ -36,46 +36,45 @@ namespace Ecosystem
             Ecosystem(float width, float height, int maxEntities = 500);
             ~Ecosystem();
             // MÉTHODES PUBLIQUES
-    void Initialize(int initialHerbivores, int initialCarnivores, int initialPlants
-    void Update(float deltaTime); 
-    void SpawnFood(int count); 
-    void RemoveDeadEntities(); 
-    void HandleReproduction(); 
-    void HandleEating(); 
-    // 
-�
-�
- GETTERS 
-    int GetEntityCount() const {
-                return mEntities.size(); } 
-    int GetFoodCount() const {
-                return mFoodSources.size(); } 
-    Statistics GetStatistics() const {
-                return mStats; } 
-    float GetWorldWidth() const {
-                return mWorldWidth; } 
-    float GetWorldHeight() const {
-                return mWorldHeight; } 
-    // 
-�
-�
- MÉTHODES DE GESTION 
-    void AddEntity(std::unique_ptr<Entity> entity); 
-    void AddFood(Vector2D position, float energy = 25.0f); 
-    // 
-�
-�
- RENDU 
-    void Render(SDL_Renderer* renderer) const; 
-private: 
-    // 
-�
-�
- MÉTHODES PRIVÉES 
-    void UpdateStatistics(); 
-    void SpawnRandomEntity(EntityType type); 
-    Vector2D GetRandomPosition() const; 
-    void HandlePlantGrowth(float deltaTime);
+            void Initialize(int initialHerbivores, int initialCarnivores, int initialPlants);
+            void Update(float deltaTime);
+            void SpawnFood(int count);
+            void RemoveDeadEntities();
+            void HandleReproduction();
+            void HandleEating();
+            // GETTERS
+            int GetEntityCount() const
+            {
+                return mEntities.size();
+            }
+            int GetFoodCount() const
+            {
+                return mFoodSources.size();
+            }
+            Statistics GetStatistics() const
+            {
+                return mStats;
+            }
+            float GetWorldWidth() const
+            {
+                return mWorldWidth;
+            }
+            float GetWorldHeight() const
+            {
+                return mWorldHeight;
+            }
+            // MÉTHODES DE GESTION
+            void AddEntity(std::unique_ptr<Entity> entity);
+            void AddFood(Vector2D position, float energy = 25.0f);
+            // RENDU
+            void Render(SDL_Renderer *renderer) const;
+
+        private:
+            // MÉTHODES PRIVÉES
+            void UpdateStatistics();
+            void SpawnRandomEntity(EntityType type);
+            Vector2D GetRandomPosition() const;
+            void HandlePlantGrowth(float deltaTime);
         };
     } // namespace Core
 } // namespace Ecosystem
