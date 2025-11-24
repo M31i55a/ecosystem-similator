@@ -1,5 +1,5 @@
 // src/Core/Entity.cpp
-#include "Core/Entity.h"
+#include "../../include/Core/Entity.h"
 #include <cmath>
 #include <iostream>
 #include <algorithm>
@@ -52,7 +52,7 @@ namespace Ecosystem
               mVelocity(other.mVelocity),
               color(other.color),
               size(other.size * 0.8f), // Enfant plus petit
-              mRandomGenerator(std::random_device{}())
+              mRandonGenerator(std::random_device{}())
         {
             std::cout << "Copie d'entité créée: " << name << std::endl;
         }

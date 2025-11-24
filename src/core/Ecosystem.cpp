@@ -1,5 +1,5 @@
 // src/Core/Ecosystem.cpp
-#include "Core/Ecosystem.hpp"
+#include "../../include/Core/Ecosystem.h"
 #include <algorithm>
 #include <iostream>
 namespace Ecosystem
