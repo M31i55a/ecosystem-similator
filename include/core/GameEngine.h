@@ -1,7 +1,5 @@
-//  include/Core/GameEngine.hpp
-#pragma once
 #include "../Graphics/Window.h"
-#include "../../include/Ecosystem.h"
+#include "Ecosystem.h"
 #include <chrono>
 namespace Ecosystem
 {
@@ -17,12 +15,12 @@ namespace Ecosystem
             bool mIsPaused;
             float mTimeScale;
 
-            //  CHRONOMÉTRE
+            // ⏱ CHRONOMÉTRE
             std::chrono::high_resolution_clock::time_point mLastUpdateTime;
             float mAccumulatedTime;
 
         public:
-            //  CONSTRUCTEUR
+            // 🏗 CONSTRUCTEUR
             GameEngine(const std::string &title, float width, float height);
 
             // MÉTHODES PRINCIPALES

@@ -1,9 +1,11 @@
 #pragma once
+
 #include "Entity.h"
-#include "Strusts.h"
+#include "Structs.h"
 #include <vector>
 #include <memory>
 #include <random>
+
 namespace Ecosystem
 {
     namespace Core
@@ -19,7 +21,7 @@ namespace Ecosystem
             int mMaxEntities;
             int mDayCycle;
             // Générateur aléatoire
-            std::mt19937 mRandomGenerator;
+            mutable std::mt19937 mRandomGenerator;
             // STATISTIQUES
             struct Statistics
             {
@@ -32,7 +34,7 @@ namespace Ecosystem
             } mStats;
 
         public:
-            //  CONSTRUCTEUR/DESTRUCTEUR
+            // CONSTRUCTEUR/DESTRUCTEUR
             Ecosystem(float width, float height, int maxEntities = 500);
             ~Ecosystem();
             // MÉTHODES PUBLIQUES
@@ -43,26 +45,11 @@ namespace Ecosystem
             void HandleReproduction();
             void HandleEating();
             // GETTERS
-            int GetEntityCount() const
-            {
-                return mEntities.size();
-            }
-            int GetFoodCount() const
-            {
-                return mFoodSources.size();
-            }
-            Statistics GetStatistics() const
-            {
-                return mStats;
-            }
-            float GetWorldWidth() const
-            {
-                return mWorldWidth;
-            }
-            float GetWorldHeight() const
-            {
-                return mWorldHeight;
-            }
+            int GetEntityCount() const { return mEntities.size(); }
+            int GetFoodCount() const { return mFoodSources.size(); }
+            Statistics GetStatistics() const { return mStats; }
+            float GetWorldWidth() const { return mWorldWidth; }
+            float GetWorldHeight() const { return mWorldHeight; }
             // MÉTHODES DE GESTION
             void AddEntity(std::unique_ptr<Entity> entity);
             void AddFood(Vector2D position, float energy = 25.0f);

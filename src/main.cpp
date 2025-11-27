@@ -1,32 +1,41 @@
-#include "core/GameEngine.h"
-#include <iostream>>
-#include <cstdlib>>
-#include <ctime>
-int main(int argc, char *argv[])
-{
-    // initialisation de l'aleatoire
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    std::cout << "demarage du simulateur d'ecosysteme" << std::endl;
-    std::cout << "============================================" << std::endl;
-    // creation du moteur de jeu
-    Ecosystem::core::GameEngine engine("simulateur d'EcosystemeIntelligent", 1200.0f, 800.0f);
-    // iitialisation
-    if (!engine.Initialisation())
-    {
-        std::cerr << "Erreur: Impossible d'initiaiser le moteur de jeu" << std::endl;
-        return -1;
+#include "Core/GameEngine.h" 
+#include <iostream> 
+#include <cstdlib> 
+#include <ctime> 
+#include <windows.h>
+
+int main(int argc, char* argv[]) {
+    SetConsoleOutputCP(CP_UTF8); 
+    // Initialisation de l'aléatoire 
+    std::srand(static_cast<unsigned int>(std::time(nullptr))); 
+     
+    std::cout << "🎮Démarrage du Simulateur d'Écosystème" << std::endl; 
+    std::cout << "=======================================" << std::endl; 
+     
+    // 🏗 Création du moteur de jeu 
+    Ecosystem::Core::GameEngine engine("Simulateur d'Écosystème Intelligent", 1200.0f, 600.0f);
+     
+    // Initialisation 
+    if (!engine.Initialize()) { 
+        std::cerr << "❌Erreur: Impossible d'initialiser le moteur de jeu" << std::endl;
+        return -1; 
     }
-    std::cout << "moteur initialise avec succes" << std::endl;
-    std::cout << "lancement de la simulation..." << std::endl;
-    std::cout << "====CONTROLES====" << std::endl;
-    std::cout << "ESPACE:pause/reprise" << std::endl;
-    std::cout << "R:Reset simulation" << std::endl;
-    std::cout << "F:Ajouter nourriture" << std::endl;
-    std::cout << "FLECHES:vitesse simulation" << std::endl;
-    std::cout << "ECHAP:Quitter" << std::endl;
-    // boucle principale
-    engine.Run();
-    // Arret propre
-    engine.Shutdown();
-    std::cout << "simulation terminee. Au revoir!" << std::endl;
+     
+    std::cout << "✅Moteur initialisé avec succès" << std::endl; 
+    std::cout << "🎯Lancement de la simulation..." << std::endl; 
+    std::cout << "=== CONTRÔLES ===" << std::endl; 
+    std::cout << "ESPACE: Pause/Reprise" << std::endl; 
+    std::cout << "R: Reset simulation" << std::endl; 
+    std::cout << "F: Ajouter nourriture" << std::endl; 
+    std::cout << "FLÈCHES: Vitesse simulation" << std::endl; 
+    std::cout << "ÉCHAP: Quitter" << std::endl; 
+     
+    // Boucle principale 
+    engine.Run(); 
+     
+    // Arrêt propre 
+    engine.Shutdown(); 
+     
+    std::cout << "👋Simulation terminée. Au revoir !" << std::endl; 
+    return 0;
 }
