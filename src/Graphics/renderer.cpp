@@ -13,7 +13,7 @@ private:
     bool mIsInitialized; 
     std::string mTitle; 
 public: 
-    // 🏗 CONSTRUCTEUR/DESTRUCTEUR 
+    //  CONSTRUCTEUR/DESTRUCTEUR 
     Window(const std::string& title, float width, float height); 
     ~Window(); 
     //INITIALISATION 

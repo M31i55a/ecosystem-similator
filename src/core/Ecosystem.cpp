@@ -5,19 +5,19 @@ namespace Ecosystem
 {
     namespace Core
     {
-        // 🏗 CONSTRUCTEUR
+        //  CONSTRUCTEUR
         Ecosystem::Ecosystem(float width, float height, int maxEntities)
             : mWorldWidth(width), mWorldHeight(height), mMaxEntities(maxEntities),
               mDayCycle(0), mRandomGenerator(std::random_device{}())
         {
             // Initialisation des statistiques
             mStats = {0, 0, 0, 0, 0, 0};
-            std::cout << "🌍Écosystème créé: " << width << "x" << height << std::endl;
+            std::cout << "Écosystème créé: " << width << "x" << height << std::endl;
         }
-        // 🗑 DESTRUCTEUR
+        //  DESTRUCTEUR
         Ecosystem::~Ecosystem()
         {
-            std::cout << "🌍Écosystème détruit (" << mEntities.size() << " entités nettoyé" << std::endl;
+            std::cout << "Écosystème détruit (" << mEntities.size() << " entités nettoyé" << std::endl;
         }
         // INITIALISATION
         void Ecosystem::Initialize(int initialHerbivores, int initialCarnivores, int initialPlants)
@@ -110,7 +110,7 @@ namespace Ecosystem
                 mEntities.push_back(std::move(newEntity));
             }
         }
-        // 🍽 GESTION DE L'ALIMENTATION
+        // GESTION DE L'ALIMENTATION
         void Ecosystem::HandleEating()
         {
             // Ici on implémenterait la logique de recherche de nourriture

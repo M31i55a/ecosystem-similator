@@ -4,7 +4,7 @@
 #include <algorithm> 
 namespace Ecosystem { 
 namespace Core { 
-// 🏗 CONSTRUCTEUR PRINCIPAL 
+//  CONSTRUCTEUR PRINCIPAL 
 Entity::Entity(EntityType type, Vector2D pos, std::string entityName) 
     : mType(type), position(pos), name(entityName),  
       mRandomGenerator(std::random_device{}())  // Initialisation du générateur alé
@@ -39,7 +39,7 @@ Entity::Entity(EntityType type, Vector2D pos, std::string entityName)
     std::cout << "🌱 Entité créée: " << name << " à (" << position.x << ", " << position.y << ")";
  } 
 
-// 🏗 CONSTRUCTEUR DE COPIE 
+//  CONSTRUCTEUR DE COPIE 
 Entity::Entity(const Entity& other) 
     : mType(other.mType), position(other.position), name(other.name + "_copy"), 
       mEnergy(other.mEnergy * 0.7f),  // Enfant a moins d'énergie 
@@ -53,11 +53,11 @@ Entity::Entity(const Entity& other)
       mRandomGenerator(std::random_device{}()) 
 { 
  
-    std::cout << " 👶 Copie d'entité créée: " << name << std::endl; 
+    std::cout << "  Copie d'entité créée: " << name << std::endl; 
 }
-// 🗑 DESTRUCTEUR 
+//  DESTRUCTEUR 
 Entity::~Entity() { 
-    std::cout << "💀Entité détruite: " << name << " (Âge: " << mAge << ")" << std::endl;
+    std::cout << "Entité détruite: " << name << " (Âge: " << mAge << ")" << std::endl;
  } 
 
  //MISE À JOUR PRINCIPALE 
@@ -85,7 +85,7 @@ void Entity::Move(float deltaTime) {
     // Consommation d'énergie due au mouvement 
     mEnergy -= mVelocity.Distance(Vector2D(0, 0)) * deltaTime * 0.1f; 
 } 
-// 🍽 MANGER
+//  MANGER
  void Entity::Eat(float energy) { 
     mEnergy += energy; 
     if (mEnergy > mMaxEnergy) { 
@@ -116,7 +116,7 @@ void Entity::Age(float deltaTime) {
     mAge += static_cast<int>(deltaTime * 10.0f);  // Accéléré pour la simulation 
 } 
 
-// ❤VÉRIFICATION DE LA SANTÉ 
+// VÉRIFICATION DE LA SANTÉ 
 void Entity::CheckVitality() { 
     if (mEnergy <= 0.0f || mAge >= mMaxAge) { 
         mIsAlive = false; 

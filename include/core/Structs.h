@@ -9,11 +9,9 @@ namespace Core {
 struct Vector2D { 
     float x; 
     float y; 
-    // 
-
     //Constructeur avec valeurs par défaut 
     Vector2D(float xValue = 0.0f, float yValue = 0.0f) : x(xValue), y(yValue) {
-        std::cout << "✅vector cree : (" << x <<"," << y <<")";
+        std::cout << "vector cree : (" << x <<"," << y <<")";
     } 
     
     // Méthodes utilitaires 

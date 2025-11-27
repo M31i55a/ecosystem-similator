@@ -3,7 +3,7 @@
 #include <sstream> 
 namespace Ecosystem { 
 namespace Core { 
-// 🏗 CONSTRUCTEUR 
+//  CONSTRUCTEUR 
 GameEngine::GameEngine(const std::string& title, float width, float height) 
     : mWindow(title, width, height),  
       mEcosystem(width, height, 500), 
@@ -19,12 +19,12 @@ bool GameEngine::Initialize() {
     mEcosystem.Initialize(20, 5, 30);  // 20 herbivores, 5 carnivores, 30 plantes 
     mIsRunning = true; 
     mLastUpdateTime = std::chrono::high_resolution_clock::now(); 
-    std::cout << "✅Moteur de jeu initialisé" << std::endl; 
+    std::cout << "Moteur de jeu initialisé" << std::endl; 
     return true; 
 } 
 // BOUCLE PRINCIPALE 
 void GameEngine::Run() { 
-    std::cout << "🎯Démarrage de la boucle de jeu..." << std::endl; 
+    std::cout << "Démarrage de la boucle de jeu..." << std::endl; 
     while (mIsRunning) { 
         auto currentTime = std::chrono::high_resolution_clock::now(); 
         std::chrono::duration<float> elapsed = currentTime - mLastUpdateTime; 
@@ -42,7 +42,7 @@ void GameEngine::Run() {
 // FERMETURE 
 void GameEngine::Shutdown() { 
     mIsRunning = false; 
-    std::cout << "🔄Moteur de jeu arrêté" << std::endl; 
+    std::cout << "Moteur de jeu arrêté" << std::endl; 
 } 
 // GESTION DES ÉVÉNEMENTS 
 void GameEngine::HandleEvents() { 
@@ -58,7 +58,7 @@ void GameEngine::HandleEvents() {
         } 
     }
  } 
-// ⌨GESTION DES TOUCHES 
+// GESTION DES TOUCHES 
 void GameEngine::HandleInput(SDL_Keycode key) { 
     switch (key) { 
         case SDLK_ESCAPE: 
@@ -73,19 +73,19 @@ void GameEngine::HandleInput(SDL_Keycode key) {
             break; 
         case SDLK_R: 
             mEcosystem.Initialize(20, 5, 30); 
-            std::cout << "🔄Simulation réinitialisée" << std::endl; 
+            std::cout << "Simulation réinitialisée" << std::endl; 
             break; 
         case SDLK_F: 
             mEcosystem.SpawnFood(10); 
-            std::cout << "🍎Nourriture ajoutée" << std::endl; 
+            std::cout << "Nourriture ajoutée" << std::endl; 
             break; 
         case SDLK_UP: 
             mTimeScale *= 1.5f; 
-            std::cout << "⏩Vitesse: " << mTimeScale << "x" << std::endl; 
+            std::cout << "Vitesse: " << mTimeScale << "x" << std::endl; 
             break; 
         case SDLK_DOWN: 
             mTimeScale /= 1.5f; 
-            std::cout << "⏪Vitesse: " << mTimeScale << "x" << std::endl; 
+            std::cout << "Vitesse: " << mTimeScale << "x" << std::endl; 
             break; 
     }
  } 

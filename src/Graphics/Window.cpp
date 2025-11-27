@@ -2,7 +2,7 @@
 #include <iostream> 
 namespace Ecosystem { 
 namespace Graphics { 
-// 🏗 CONSTRUCTEUR 
+//  CONSTRUCTEUR 
 Window::Window(const std::string& title, float width, float height) 
     : mTitle(title), mWidth(width), mHeight(height),  
       mWindow(nullptr), mRenderer(nullptr), mIsInitialized(false) {} 
@@ -13,24 +13,24 @@ Window::~Window() {
 // INITIALISATION 
 bool Window::Initialize() { 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) { 
-        std::cerr << "❌Erreur SDL_Init: " << SDL_GetError() << std::endl; 
+        std::cerr << "Erreur SDL_Init: " << SDL_GetError() << std::endl; 
         return false; 
     }
     mWindow = SDL_CreateWindow(mTitle.c_str(), static_cast<int>(mWidth), static_cast<int>(mHeight), 0); 
     if (!mWindow) { 
-        std::cerr << "❌Erreur création fenêtre: " << SDL_GetError() << std::endl;
+        std::cerr << "Erreur création fenêtre: " << SDL_GetError() << std::endl;
         SDL_Quit(); 
         return false; 
     }
     mRenderer = SDL_CreateRenderer(mWindow, NULL); 
     if (!mRenderer) { 
-        std::cerr << "❌Erreur création renderer: " << SDL_GetError() << std::endl;
+        std::cerr << "Erreur création renderer: " << SDL_GetError() << std::endl;
         SDL_DestroyWindow(mWindow); 
         SDL_Quit(); 
         return false; 
     }
     mIsInitialized = true; 
-    std::cout << "✅Fenêtre initialisée: " << mTitle << " (" << mWidth << "x" << mHeight << ")";
+    std::cout << "Fenêtre initialisée: " << mTitle << " (" << mWidth << "x" << mHeight << ")";
     return true; 
 } 
 // FERMETURE 
@@ -45,7 +45,7 @@ void Window::Shutdown() {
     }
     SDL_Quit(); 
     mIsInitialized = false; 
-    std::cout << "🔄Fenêtre fermée" << std::endl; 
+    std::cout << "Fenêtre fermée" << std::endl; 
 } 
 // NETTOYAGE DE L'ÉCRAN 
 void Window::Clear(const Core::Color& color) { 

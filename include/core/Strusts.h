@@ -40,7 +40,7 @@ namespace Ecosystem
             Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = 255)
                 : r(red), g(green), b(blue), a(alpha) {}
             // Couleurs prédéfinies
-            static Color Red() { return Color(255, 0, 0); }
+            static  Color Red() { return Color(255, 0, 0); }
             static Color Green() { return Color(0, 255, 0); }
             static Color Blue() { return Color(0, 0, 255); }
         };
