@@ -26,6 +26,10 @@ namespace Ecosystem
             bool mIsAlive;
             Vector2D mVelocity;
             EntityType mType;
+            Vector2D SeekFood( );
+            Vector2D AvoidPredators()const;
+             Vector2D StayInBounds()const;
+             void ApplyForce(); 
             // Générateur aléatoire mutable std::mt19937 mRandomGenerator;
 
         public:
