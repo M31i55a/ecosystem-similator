@@ -26,8 +26,26 @@ namespace Ecosystem
             bool mIsAlive;
             Vector2D mVelocity;
             EntityType mType;
-            Vector2D SeekFood( );
-            Vector2D AvoidPredators()const;
+            Vector2D SeekFood(const std::vector<Vector2D>& foodList){
+                if (foodList.empty())
+                return Vector2D(0,0);
+            const Vector2D* closest= nullptr;
+            float minDist= std::numeric_limits<float>::max();
+            //trouver la nourriture la plus proche
+            for(const auto& food: foodList){
+                float d=(food-position).length();
+                if (d<minDist){
+                    minDist=d;
+                    closest=&food;
+                }
+            }
+            // direcyion vers la nourriture
+             Vector2D desired= (*closest-position).normalized()*maxSpeed;
+            // steering=nouvelle direction-Vitesse actuelle
+            Vector2D steering= desired-velocity;
+            return steering;
+            }
+            Vector2D AvoidPredators(const Vector2D)const;
              Vector2D StayInBounds()const;
              void ApplyForce(); 
             // Générateur aléatoire mutable std::mt19937 mRandomGenerator;
@@ -57,7 +75,25 @@ namespace Ecosystem
             Vector2D GetVelocity() const { return mVelocity; }
             // MÉTHODES DE COMPORTEMENT
             Vector2D
-            SeekFood(const std::vector<Food> &foodSources) const;
+            SeekFood(const std::vector<Food> &foodSources) const{J
+            if (foodList.empty())
+                return Vector2D(0,0);
+            const Vector2D* closest= nullptr;
+            float minDist= std::numeric_limits<float>::max();
+            //trouver la nourriture la plus proche
+            for(const auto& food: foodList){
+                float d=(food-position).length();
+                if (d<minDist){
+                    minDist=d;
+                    closest=&food;
+                }
+            }
+            // direcyion vers la nourriture
+             Vector2D desired= (*closest-position).normalized()*maxSpeed;
+            // steering=nouvelle direction-Vitesse actuelle
+            Vector2D steering= desired-velocity;
+            return steering;
+            }
             Vector2D AvoidPredators(const std::vector<Entity> &predators) const;
             Vector2D StayInBounds(float worldWidth, float worldHeight) const;
             // MÉTHODE DE RENDU
