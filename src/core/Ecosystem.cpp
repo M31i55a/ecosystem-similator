@@ -117,6 +117,38 @@ namespace Ecosystem
             // Pour l'instant, gestion simplifiée
             for (auto &entity : mEntities)
             {
+                if(mType==EntityType::HERBIVORE){
+                    //chercher les vegetaux
+                    for(const auto&food : foodSources){
+                        float distance = position.Distance(food.position);
+                        if(distance<closestDistance){
+                            closestDistance=distance;
+                            desiredDistance=Vector2D(food.position.x-position.x, food.position.y-position.y);
+                        }
+                    }
+                }else if (mType==EntityType::CARNIVORE){
+                    //cherche de herbivores
+                    for(const auto& prey:entity){
+                        if(prey.GetType()==EntityType::HERBIVORE&& prey.IsAlive()){
+                            float distance=position.Distance(prey.position);
+                            if(distance<closestDistance){
+                                closestDistance=distance;
+                                desiredDirection = Vector2D(prey.position.x-position.x, prey.position.y=position.y);
+                            }
+                        }
+                    }
+                }
+                // normalisation de la direction
+                float length = std::sqrt(desiredDirection.x * desiredDirection.x + desiredDirection.y * desiredDirection.y);
+                if(length> 0.0f){
+                    desiredDirection.x/=length;
+                    desiredDirection.y/=length;
+                }
+                return desiredDirection;
+                for(auto& entity : entities){
+                    entity->AvoidPredators();
+               }
+
                 if (entity->GetType() == EntityType::PLANT)
                 {
                     // Les plantes génèrent de l'énergie
@@ -187,6 +219,7 @@ namespace Ecosystem
         }
         // RENDU
         void Ecosystem::Render(SDL_Renderer *renderer) const
+        void Ecosystem::AddEntity(std::unique_ptr<Entity>entities);
         {
             // Rendu de la nourriture
             for (const auto &food : mFoodSources)

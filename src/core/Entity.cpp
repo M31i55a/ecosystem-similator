@@ -73,7 +73,6 @@ void Entity::Update(float deltaTime) {
 //MOUVEMENT 
 Vector2D SeekFood();
 Vector2D AvoidPredators();
-Vector2D StayInBounds();
 void ApplyForce();
 void Entity::Move(float deltaTime) { 
     if (mType == EntityType::PLANT) return;  // Les plantes ne bougent pas 
@@ -85,7 +84,7 @@ void Entity::Move(float deltaTime) {
     }
     //Application du mouvement 
     position = position + mVelocity * deltaTime * 20.0f; 
-    
+    Vector2D StayInBounds();
     // Consommation d'énergie due au mouvement 
     mEnergy -= mVelocity.Distance(Vector2D(0, 0)) * deltaTime * 0.1f; 
 } 
