@@ -36,7 +36,7 @@ Entity::Entity(EntityType type, Vector2D pos, std::string entityName)
     mAge = 0; 
     mIsAlive = true; 
     mVelocity = GenerateRandomDirection(); 
-    std::cout << "🌱 Entité créée: " << name << " à (" << position.x << ", " << position.y << ")";
+    std::cout << " Entité créée: " << name << " à (" << position.x << ", " << position.y << ")";
  } 
 
 //  CONSTRUCTEUR DE COPIE 
@@ -189,5 +189,68 @@ void Entity::Render(SDL_Renderer* renderer) const {
         SDL_RenderFillRect(renderer, &energyBar); 
     }
  } 
+  Vector2D SeekFood(const std::vector<Food> &foodSources) const
+            {
+             if (foodList.empty())
+                 return Vector2D(0,0);
+                const Vector2D* closest= nullptr;
+                float minDist= std::numeric_limits<float>::max();
+             //trouver la nourriture la plus proche
+             for(const auto& food: foodList)
+             {
+                float d=(food-position).length();
+                if (d<minDist)
+                {
+                    minDist=d;
+                    closest=&food;
+                }
+             }
+                                                                              // direction vers la nourriture
+                Vector2D desired= (*closest-position).normalized()*maxSpeed;
+                                                                              // steering=nouvelle direction-Vitesse actuelle
+               Vector2D steering= desired-velocity;
+              return steering;
+            }
+            Vector2D AvoidPredators(const std::vector<Entity> &predators) 
+            {
+                if(predators.empty())
+                                                                                // parcours la liste de predateur
+                    return{0,0}
+                    const Vector2D* closest=nullptr;
+                    float minDist=std::numeric_limits<float>::max();
+                 for(const auto& pred: predators)
+                 {
+                    float d=(pred-position).length();
+                    if(d<minDist)                                                  //verifi si le predateur actuel est plus proche que le precedent
+                    {
+                        minDist=d;
+                        closest= &pred;                                            // on garde l'adresse du predateur le plus proche
+                    }
+                 }
+                if(minDist>panicRadius)                                            // si le predateur est loin, no fuit pas
+                return Vector2D(0,0);
+             Vector2D desired=(position- *closest).normalized() * maxSpeed;        // sinon calcule une force de fuite
+             return desired-velocity;
+            }
+            Vector2D StayInBounds(float worldWidth, float worldHeight,float margin)// garde les agents a l'interieur du monde
+             {
+                Vector2D desired(0,0);
+                if(position.x<margin)                                            // si la position en x est inferieure a la distance de securite , alors fuit avec une vitesse maximale
+                      desired.x=maxSpeed;
+                 else if(position.x>worldWidth-margin)desired.x=-maxSpeed;      // si la position en x est hors du monde , revenir
+               if(position.y<margin)                                            // si la position en y est inferieure a la distance de securite , alors fuit avec une vitesse maximale
+                      desired.y=maxSpeed;
+                 else if(position.y>worldHeight-margin)desired.y=-maxSpeed;    // si la position en y est hors du monde , revenir
+               if(desired.x==0 && desired.y==0)                                //si l'agent est au centre du monde , ne rien faire
+              return{0,0};
+            return desired-velocity;
+           // margin=distance de securite
+           //maxSpeed=vitesse maximale
+           //velocity=vitesse actuelle
+           //desired = vitesse ou direction que l'agent veut atteindre
+            }
+            void ApplyForce(const Vector2D& force){
+                acceleration+=force;
+            }
 } // namespace Core 
 } // namespace Ecosystem
