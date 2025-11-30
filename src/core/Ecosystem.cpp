@@ -205,5 +205,15 @@ namespace Ecosystem
                 entity->Render(renderer);
             }
         }
+      void AddEntity(std::unique_ptr<Entity> entity)
+      {
+        entities.push_back(std::move(entity)); //donne l'objet au vecteur
+      } 
+      void AddFood(Vector2D position, float energy=25.0f){
+        entities.push_back(std::make_unique<Food>(position, energy));/*cree une nouvelle nourriture, 
+                                                                         prend possession de la nourriture
+                                                                         ajoute de la nourriture dans entities,*/
+                                                                         
+      } 
     } // namespace Core
 } // namespace Ecosystem

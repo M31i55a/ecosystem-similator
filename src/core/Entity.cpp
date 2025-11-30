@@ -71,6 +71,10 @@ void Entity::Update(float deltaTime) {
     CheckVitality(); 
 } 
 //MOUVEMENT 
+Vector2D SeekFood();
+Vector2D AvoidPredators();
+Vector2D StayInBounds();
+void ApplyForce();
 void Entity::Move(float deltaTime) { 
     if (mType == EntityType::PLANT) return;  // Les plantes ne bougent pas 
     
